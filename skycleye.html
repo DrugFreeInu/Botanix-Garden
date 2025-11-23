@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ButterCleye</title>
+<style>
+  body {
+    margin: 0;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #000;
+  }
+
+  .buttercleye {
+    position: relative;
+    width: 220px;
+    height: 120px;
+  }
+
+  /* Left Wing */
+  .left-wing {
+    position: absolute;
+    width: 130px;
+    height: 130px;
+    border-radius: 70% 30% 70% 30%;
+    left: -90px;
+    top: -5px;
+    transform: rotate(20deg);
+    filter: blur(1px);
+  }
+
+  /* Right Wing */
+  .right-wing {
+    position: absolute;
+    width: 130px;
+    height: 130px;
+    border-radius: 30% 70% 30% 70%;
+    right: -90px;
+    top: -5px;
+    transform: rotate(-20deg);
+    filter: blur(1px);
+  }
+
+  /* Eye Outer */
+  .eye {
+    position: absolute;
+    width: 220px;
+    height: 120px;
+    background: #fff;
+    border-radius: 50% / 60%;
+    box-shadow: 0 0 30px #ff44bb;
+  }
+
+  /* Pupil Inner */
+  .pupil {
+    position: absolute;
+    width: 80px;
+    height: 80px;
+    background: radial-gradient(circle, #000 40%, #222 100%);
+    border-radius: 50%;
+    top: 20px;
+    left: 70px;
+    box-shadow: 0 0 25px #ff2e88aa;
+  }
+
+  /* Cleye highlight */
+  .shine {
+    position: absolute;
+    width: 22px;
+    height: 22px;
+    background: #fff;
+    border-radius: 50%;
+    top: 30px;
+    left: 95px;
+    opacity: 0.8;
+  }
+</style>
+</head>
+<body>
+
+<div class="buttercleye">
+  <div class="left-wing"></div>
+  <div class="right-wing"></div>
+  <div class="eye"></div>
+  <div class="pupil"></div>
+  <div class="shine"></div>
+</div>
+
+<script>
+  function randomColor() {
+    const r = Math.floor(Math.random()*255);
+    const g = Math.floor(Math.random()*255);
+    const b = Math.floor(Math.random()*255);
+    return `rgb(${r},${g},${b})`;
+  }
+
+  const c1 = randomColor();
+  const c2 = randomColor();
+
+  document.querySelector(".left-wing").style.background =
+    `radial-gradient(circle, ${c1}, ${c2})`;
+
+  document.querySelector(".right-wing").style.background =
+    `radial-gradient(circle, ${c1}, ${c2})`;
+</script>
+
+</body>
+</html>
