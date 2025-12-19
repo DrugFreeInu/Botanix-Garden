@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Botanix Seed</title>
+<title>Botanix Seed – Time Test</title>
 
 <style>
 html, body {
@@ -13,19 +13,78 @@ html, body {
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-direction: column;
 }
 
 #seed {
-  width: 14px;
-  height: 14px;
   background: white;
   border: 2px solid black;
   border-radius: 50%;
+  transition: all 1.5s ease;
+  margin-bottom: 24px;
+}
+
+.controls {
+  color: #aaa;
+  font-family: system-ui, sans-serif;
+  font-size: 13px;
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
+button {
+  background: #222;
+  color: #fff;
+  border: 1px solid #444;
+  padding: 6px 12px;
+  cursor: pointer;
+}
+
+button:hover {
+  background: #333;
 }
 </style>
 </head>
 
 <body>
-  <div id="seed"></div>
+
+<div id="seed"></div>
+
+<div class="controls">
+  <span>Days passed:</span>
+  <span id="days">0</span>
+  <button id="nextDay">+1 day</button>
+</div>
+
+<script>
+const seedEl = document.getElementById("seed");
+const daysEl = document.getElementById("days");
+const nextBtn = document.getElementById("nextDay");
+
+let data = JSON.parse(localStorage.getItem("botanixSeed")) || {
+  size: 14,
+  days: 0
+};
+
+function grow() {
+  const randomGrowth = Math.random() * 6;
+  data.size += randomGrowth;
+  data.days += 1;
+  localStorage.setItem("botanixSeed", JSON.stringify(data));
+  render();
+}
+
+function render() {
+  seedEl.style.width = data.size + "px";
+  seedEl.style.height = data.size + "px";
+  daysEl.textContent = data.days;
+}
+
+nextBtn.addEventListener("click", grow);
+
+render();
+</script>
+
 </body>
 </html>
